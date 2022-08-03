@@ -41,7 +41,7 @@
               {{ account.updated_at.substring(0, 10) }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <a href="#" @click="openUpdateModal(account.id)" class="text-blue-600 hover:text-blue-900">Re-check</a>
+              <a href="#" @click.prevent="openUpdateModal(account.id)" class="text-blue-600 hover:text-blue-900">Re-check</a>
             </td>
           </tr>
         </template>
