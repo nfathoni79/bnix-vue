@@ -119,8 +119,8 @@ export default {
     BaseContent,
     BaseTable,
     BaseButton,
-    BaseModal
-},
+    BaseModal,
+  },
   data() {
     return {
       accounts: [],
@@ -133,7 +133,7 @@ export default {
         search: '',
         accountNo: '',
         accountId: null,
-      }
+      },
     }
   },
   created() {
@@ -142,11 +142,11 @@ export default {
   watch: {
     'form.search'(newValue) {
       this.searchAccounts(newValue)
-    }
+    },
   },
   methods: {
     getAccounts() {
-      BniService.getAccounts()
+      BniService.getAccounts('', '')
         .then((response) => {
           this.accounts = response.data.accounts
         })

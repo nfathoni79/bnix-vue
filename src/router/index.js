@@ -3,6 +3,7 @@ import Login from '../views/Login.vue'
 import NotFound from '../views/NotFound.vue'
 import Base from '../views/Base.vue'
 import Accounts from '../views/Accounts.vue'
+import Transfers from '../views/Transfers.vue'
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
         name: 'accounts',
         component: Accounts,
         alias: '/accounts',
+      },
+      {
+        path: '/transfers',
+        name: 'transfers',
+        component: Transfers,
       },
     ],
   },

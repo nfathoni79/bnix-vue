@@ -29,9 +29,13 @@ export default {
     setToken()
     return apiClient.post('/api/logout')
   },
-  getAccounts() {
+  getAccounts(sort, ogp) {
     setToken()
-    return apiClient.get('/api/accounts')
+    return apiClient.get(`/api/accounts?sort=${sort}&ogp=${ogp}`)
+  },
+  getTransfers(search) {
+    setToken()
+    return apiClient.get(`/api/transfers?search=${search}`)
   },
   searchAccounts(term) {
     setToken()
@@ -46,6 +50,16 @@ export default {
     return apiClient.post('/api/accounts', {
       token: getBToken(),
       accountNo: accountNo,
+    })
+  },
+  transfer(fromAccountId, toAccountId, amount, remark) {
+    setToken()
+    return apiClient.post('/api/transfers', {
+      token: getBToken(),
+      fromAccountId: fromAccountId,
+      toAccountId: toAccountId,
+      amount: amount,
+      remark: remark,
     })
   },
   updateAccount(id) {

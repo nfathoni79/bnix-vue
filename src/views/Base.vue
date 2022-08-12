@@ -107,7 +107,8 @@ export default {
   data() {
     return {
       navigation: [
-        { name: 'Home', route: 'accounts' },
+        { name: 'Accounts', route: 'accounts' },
+        { name: 'Transfers', route: 'transfers' },
       ],
       user: {
         name: localStorage.getItem('name'),
