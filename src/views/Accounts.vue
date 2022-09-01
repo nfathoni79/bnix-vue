@@ -38,7 +38,7 @@
               {{ account.balance != null ? formatCurrency(account.balance) : '?' }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ account.updated_at.substring(0, 10) }}
+              {{ formatDateTime(account.updated_at) }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
               <a href="#" @click.prevent="openUpdateModal(account.id)" class="text-blue-600 hover:text-blue-900">Re-check</a>
@@ -245,6 +245,9 @@ export default {
     },
     formatCurrency(value) {
       return `Rp ${value.toLocaleString()}`
+    },
+    formatDateTime(dateTimeString) {
+      return new Date(dateTimeString).toLocaleString()
     },
     openAddModal() {
       this.addModalOpen = true
