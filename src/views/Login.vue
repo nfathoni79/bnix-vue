@@ -45,8 +45,6 @@ export default {
     submitLogin() {
       BniService.login(this.email, this.password)
         .then((response) => {
-          localStorage.setItem('name', response.data.user.name)
-          localStorage.setItem('email', response.data.user.email),
           localStorage.setItem('token', response.data.token)
           this.getBniToken()
           this.$router.push({ name: 'accounts' })

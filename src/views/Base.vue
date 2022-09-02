@@ -82,7 +82,7 @@
       </DisclosurePanel>
     </Disclosure>
 
-    <router-view />
+    <router-view :user="user" />
   </div>
 </template>
 
@@ -104,6 +104,9 @@ export default {
     MenuIcon,
     XIcon,
   },
+  created() {
+    this.getCurrentUser()
+  },
   data() {
     return {
       navigation: [
@@ -111,8 +114,9 @@ export default {
         { name: 'Transfers', route: 'transfers' },
       ],
       user: {
-        name: localStorage.getItem('name'),
-        email: localStorage.getItem('email'),
+        name: '',
+        email: '',
+        role: '',
       },
       userNavigation: [
         { name: 'Logout', href: '#' },
@@ -142,6 +146,23 @@ export default {
             }
           })
       }
+    },
+    getCurrentUser() {
+      BniService.getCurrentUser()
+      .then((response) => {
+        const user = response.data
+        this.user.name = user.name
+        this.user.email = user.email
+        this.user.role = user.role ? user.role.name : ''
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          alert(error.response.data.message)
+          this.$router.push({ name: 'login' })
+        } else {
+          alert(error.message)
+        }
+      })
     }
   }
 }

@@ -29,6 +29,10 @@ export default {
     setToken()
     return apiClient.post('/api/logout')
   },
+  getCurrentUser() {
+    setToken()
+    return apiClient.get('/api/user')
+  },
   getAccounts(sort, ogp) {
     setToken()
     return apiClient.get(`/api/accounts?sort=${sort}&ogp=${ogp}`)

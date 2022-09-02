@@ -8,7 +8,7 @@
             class="grow py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
             placeholder="Search Account Number or Name">
         </div>
-        <div>
+        <div v-if="user.role == 'supe'">
           <BaseButton color="green" @click="openTransferModal">Transfer</BaseButton>
         </div>
       </div>
@@ -128,6 +128,9 @@ export default {
     BaseModal,
     BniService,
   },
+  props: {
+    user: Object,
+  },
   data() {
     return {
       transfers: [],
@@ -201,6 +204,8 @@ export default {
         if (error.response.status == 401) {
           alert(error.response.data.message)
           this.$router.push({ name: 'login' })
+        } else if (error.response.status === 403) {
+          alert('Unauthorized.')
         } else if (error.response.status == 422
             || error.response.status == 404
             || error.response.status == 400) {
